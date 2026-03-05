@@ -1,31 +1,34 @@
 import java.util.Stack;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        System.out.println("Welcome to the Palindrome Checker Management System");
-        System.out.println("Version : 5.0");
-        System.out.println("System initialized successfully.");
-        System.out.println();
+        String word = "madam";
 
-        String input = "noon";
         Stack<Character> stack = new Stack<>();
+        Queue<Character> queue = new LinkedList<>();
 
-        for (char c : input.toCharArray()) {
+        for (char c : word.toCharArray()) {
             stack.push(c);
+            queue.add(c);
         }
 
         boolean isPalindrome = true;
 
-        for (char c : input.toCharArray()) {
-            if (c != stack.pop()) {
+        while (!stack.isEmpty()) {
+            if (stack.pop() != queue.remove()) {
                 isPalindrome = false;
                 break;
             }
         }
 
-        System.out.println("Input : " + input);
-        System.out.println("Is Palindrome? : " + isPalindrome);
+        if (isPalindrome) {
+            System.out.println("The word \"" + word + "\" is a palindrome.");
+        } else {
+            System.out.println("The word \"" + word + "\" is NOT a palindrome.");
+        }
     }
 }
