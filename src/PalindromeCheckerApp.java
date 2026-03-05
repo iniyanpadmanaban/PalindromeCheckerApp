@@ -1,34 +1,35 @@
-import java.util.Stack;
 import java.util.LinkedList;
-import java.util.Queue;
 
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        String word = "madam";
+        String input = "madam";
 
-        Stack<Character> stack = new Stack<>();
-        Queue<Character> queue = new LinkedList<>();
+        LinkedList<Character> list = new LinkedList<>();
 
-        for (char c : word.toCharArray()) {
-            stack.push(c);
-            queue.add(c);
+        for (char c : input.toCharArray()) {
+            list.add(c);
         }
 
         boolean isPalindrome = true;
 
-        while (!stack.isEmpty()) {
-            if (stack.pop() != queue.remove()) {
+        int start = 0;
+        int end = list.size() - 1;
+
+        while (start < end) {
+            if (!list.get(start).equals(list.get(end))) {
                 isPalindrome = false;
                 break;
             }
+            start++;
+            end--;
         }
 
         if (isPalindrome) {
-            System.out.println("The word \"" + word + "\" is a palindrome.");
+            System.out.println(input + " is a palindrome");
         } else {
-            System.out.println("The word \"" + word + "\" is NOT a palindrome.");
+            System.out.println(input + " is not a palindrome");
         }
     }
 }
