@@ -1,40 +1,32 @@
-public class PalindromeCheckerApp {
+class PalindromeService {
 
-    static boolean checkPalindrome(String input) {
-
-        String cleaned = input.replaceAll("\\s+", "").toLowerCase();
-
+    public boolean isPalindrome(String word) {
         int start = 0;
-        int end = cleaned.length() - 1;
+        int end = word.length() - 1;
 
         while (start < end) {
-            if (cleaned.charAt(start) != cleaned.charAt(end)) {
+            if (word.charAt(start) != word.charAt(end)) {
                 return false;
             }
             start++;
             end--;
         }
-
         return true;
     }
+}
+
+public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        String input = "A man a plan a canal Panama";
+        String input = "madam";
 
-        long startTime = System.nanoTime();
+        PalindromeService service = new PalindromeService();
 
-        boolean result = checkPalindrome(input);
-
-        long endTime = System.nanoTime();
-
-        if (result) {
+        if (service.isPalindrome(input)) {
             System.out.println(input + " is a palindrome");
         } else {
             System.out.println(input + " is not a palindrome");
         }
-
-        System.out.println("Execution Time: " + (endTime - startTime) + " ns");
-
     }
 }
