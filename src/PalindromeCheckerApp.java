@@ -20,13 +20,21 @@ public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        String input = "madam";
+        String input = "A man a plan a canal Panama";
 
-        if (checkPalindrome(input)) {
+        long startTime = System.nanoTime();
+
+        boolean result = checkPalindrome(input);
+
+        long endTime = System.nanoTime();
+
+        if (result) {
             System.out.println(input + " is a palindrome");
         } else {
             System.out.println(input + " is not a palindrome");
         }
+
+        System.out.println("Execution Time: " + (endTime - startTime) + " ns");
 
     }
 }
