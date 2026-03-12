@@ -1,21 +1,32 @@
-import java.util.Scanner;
-
 public class PalindromeCheckerApp {
 
-    public static void main(String[] args) {
-
-        Scanner scanner = new Scanner(System.in);
-
-        String input = "A man a plan a canal Panama";
+    static boolean checkPalindrome(String input) {
 
         String cleaned = input.replaceAll("\\s+", "").toLowerCase();
 
-        String reversed = new StringBuilder(cleaned).reverse().toString();
+        int start = 0;
+        int end = cleaned.length() - 1;
 
-        if (cleaned.equals(reversed)) {
+        while (start < end) {
+            if (cleaned.charAt(start) != cleaned.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
+        }
+
+        return true;
+    }
+
+    public static void main(String[] args) {
+
+        String input = "madam";
+
+        if (checkPalindrome(input)) {
             System.out.println(input + " is a palindrome");
         } else {
             System.out.println(input + " is not a palindrome");
         }
+
     }
 }
