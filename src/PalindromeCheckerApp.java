@@ -1,11 +1,8 @@
 import java.util.*;
 
-interface PalindromeStrategy {
-    boolean check(String input);
-}
+public class PalindromeCheckerApp {
 
-class StackStrategy implements PalindromeStrategy {
-    public boolean check(String input) {
+    public static boolean stackPalindrome(String input) {
         Stack<Character> stack = new Stack<>();
 
         for (char c : input.toCharArray()) {
@@ -19,10 +16,8 @@ class StackStrategy implements PalindromeStrategy {
         }
         return true;
     }
-}
 
-class DequeStrategy implements PalindromeStrategy {
-    public boolean check(String input) {
+    public static boolean dequePalindrome(String input) {
         Deque<Character> deque = new ArrayDeque<>();
 
         for (char c : input.toCharArray()) {
@@ -36,30 +31,21 @@ class DequeStrategy implements PalindromeStrategy {
         }
         return true;
     }
-}
 
-class PalindromeChecker {
-    private PalindromeStrategy strategy;
-
-    public PalindromeChecker(PalindromeStrategy strategy) {
-        this.strategy = strategy;
-    }
-
-    public boolean checkPalindrome(String input) {
-        return strategy.check(input);
-    }
-}
-
-public class PalindromeCheckerApp {
     public static void main(String[] args) {
 
         String input = "level";
 
-        PalindromeChecker checker = new PalindromeChecker(new StackStrategy());
+        long startTime = System.nanoTime();
 
-        boolean result = checker.checkPalindrome(input);
+        boolean result = stackPalindrome(input);
+
+        long endTime = System.nanoTime();
+
+        long executionTime = endTime - startTime;
 
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + result);
+        System.out.println("Execution Time : " + executionTime + " ns");
     }
 }
